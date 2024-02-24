@@ -1,0 +1,33 @@
+# Compose file odoo INVAP v16.0
+# Este archivo levanta la imagen docker en un ambiente de desarrollo linux
+# mapea los datos en el mismo lugar que los pone oe
+# Release 2023-01-12
+#################################################################################
+
+version: '3.5'
+
+services:
+  postgres:
+    image: postgres:12.13-alpine
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=odoo_community_sandbox
+      - POSTGRES_PASSWORD=123456
+    volumes:
+      - ${PROJECT_PATH}/postgresql:/var/lib/postgresql/data
+
+  odoo:
+    build: .
+    image: invap/odoo:16.0
+    container_name: odoo
+    restart: unless-stopped
+    volumes:
+      - ${PROJECT_PATH}/config:/etc/odoo
+      - ${PROJECT_PATH}/data_dir:/opt/odoo/data
+      - ${PROJECT_PATH}/backup_dir:/opt/odoo/backups
+      - ${PROJECT_PATH}/log:/var/log/odoo
+    links:
+      - postgres:db
+    ports:
+      - "8069:8069"
