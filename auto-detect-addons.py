@@ -8,6 +8,8 @@ _logger = logging.getLogger(__name__)
 REPOSITORIES = '/opt/odoo/src'
 ODOO_PATH = '/opt/odoo/odoo'
 ENTERPRISE_PATH = '/opt/odoo/enterprise'
+ADDONS_PATH = '/opt/odoo/src/custom-addons'
+
 
 addons = []
 
@@ -23,9 +25,14 @@ repo_addons = [
     for d in sorted(os.listdir(REPOSITORIES))
     if os.path.isdir(os.path.join(REPOSITORIES, d))
 ]
+local_addons = [
+    os.path.join(ADDONS_PATH, d)
+    for d in sorted(os.listdir(ADDONS_PATH))
+    if os.path.isdir(os.path.join(ADDONS_PATH, d))
+]
 
 # Repo addons are preprended, in case we want to overwrite odoo modules
-addons = repo_addons + addons
+addons = local_addons + repo_addons + addons
 
 # Overwrite 10-addons.conf
 _logger.debug('Updating addons_path.. %s' % addons)
