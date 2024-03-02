@@ -76,13 +76,13 @@ services:
             DBFILTER: wwww.casagoro.com.ar
             MAX_CRON_THREADS: 2
             WORKERS: 4
-            LIST_DB: False
-            WITHOUT_DEMO: True
-            PROXY_MODE: True
+            LIST_DB: 'False'
+            WITHOUT_DEMO: 'True'
+            PROXY_MODE: 'True'
             AEROO_DOCS_HOST: goro
             LIMIT_TIME_REAL_CRON: 0
             LIMIT_TIME_REAL: 9999
-            UNACCENT: False
+            UNACCENT: 'False'
             #ODOO_UPGRADE_PATH: /home/odoo/custom/odoo-upgrade
         dns:
             - 172.30.16.10
@@ -96,7 +96,7 @@ volumes:
 
 networks:
     goro:
-        external: false
+        external: 'false'
         name: goro-16
         ipam:
             config:
