@@ -63,14 +63,9 @@ RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ bullseye-pgdg main' > /et
 # Install rtlcss (on Debian buster)
 RUN npm install -g rtlcss
 
-# ==> Install CA INVAP
-RUN curl -s http://pki.invap.com.ar/rootca/INVAPRootCA.crt -o INVAPRootCA.crt
-RUN openssl x509 -in INVAPRootCA.crt -inform DER -outform PEM -out /usr/local/share/ca-certificates/INVAPRootCA_PEM.crt
-RUN update-ca-certificates --verbose
 
 
 RUN apt-get update && apt-get install -y procps
-# <== Install CA INVAP
 
 # Custom packages
 RUN apt-get update \
@@ -161,7 +156,7 @@ RUN build_deps=" \
         zlib1g-dev \
     " \
     && apt-get update \
-    && apt-get install -yqq --no-install-recommends $build_deps 
+    && apt-get install -yqq --no-install-recommends $build_deps
 
 # Realizo n grep de requeriments.txt eliminando lineas porque tanto psycopg2, como  python-ldap requieren
 # ser compliladas al instalarse y para poder hacerlo en la imagen pura de debian tenemos que agregar varias cosas.

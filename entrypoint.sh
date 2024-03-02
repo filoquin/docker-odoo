@@ -9,8 +9,8 @@ echo "Odoo $ODOO_VERSION Release $ODOO_RELEASE "
 # and pass them as arguments to the odoo process if not present in the config file
 : ${HOST:=${DB_PORT_5432_TCP_ADDR:='db'}}
 : ${PORT:=${DB_PORT_5432_TCP_PORT:=5432}}
-: ${USER:=${DB_ENV_POSTGRES_USER:=${POSTGRES_USER:='odoo_community_sandbox'}}}
-: ${PASSWORD:=${DB_ENV_POSTGRES_PASSWORD:=${POSTGRES_PASSWORD:='123456'}}}
+: ${USER:=${DB_ENV_POSTGRES_USER:=${POSTGRES_USER:='odoo'}}}
+: ${PASSWORD:=${DB_ENV_POSTGRES_PASSWORD:=${POSTGRES_PASSWORD:='odoo'}}}
 
 # Know if Postgres is listening
 function db_is_listening() {
@@ -50,7 +50,7 @@ echo 'Updating addons_path'
 /usr/local/bin/auto-detect-addons.py
 
 # echo -------------------------------------------------------------------------
-odoo/odoo-bin "${DB_ARGS[@]}" -u all -d odoo_demo --stop-after-init
+# odoo/odoo-bin "${DB_ARGS[@]}" -u all -d odoo_demo --stop-after-init
 # echo -------------------------------------------------------------------------
 
 
@@ -58,13 +58,13 @@ case "$1" in
     -- | odoo)
         shift
         if [[ "$1" == "scaffold" ]] ; then
-            exec odoo "$@"
+            exec odoo/odoo-bin "$@"
         else
-            exec odoo "$@" "${DB_ARGS[@]}"
+            exec odoo/odoo-bin "$@" "${DB_ARGS[@]}"
         fi
         ;;
     -*)
-        exec odoo "$@" "${DB_ARGS[@]}"
+        exec odoo/odoo-bin "$@" "${DB_ARGS[@]}"
         ;;
     *)
         exec "$@"
