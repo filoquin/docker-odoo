@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim AS base-image
+FROM python:3.8-slim-bullseye
 LABEL Odoo S.A. <info@odoo.com>
 
 # Enable Odoo user and filestore
@@ -207,11 +207,5 @@ USER odoo
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["odoo"]
 
-###############################################################################
-############################ Fin de base image ################################
-###############################################################################
-
-FROM base-image
-LABEL maintainer="Filoquin <filoquin@gmail.com>"
 
 USER odoo

@@ -1,33 +1,104 @@
-# Compose file odoo INVAP v16.0
-# Este archivo levanta la imagen docker en un ambiente de desarrollo linux
-# mapea los datos en el mismo lugar que los pone oe
-# Release 2023-01-12
-#################################################################################
-
-version: '3.5'
-
+version: '2.1'
 services:
-  postgres:
-    image: postgres:12.13-alpine
-    container_name: postgres
-    restart: unless-stopped
-    environment:
-      - POSTGRES_USER=odoo_community_sandbox
-      - POSTGRES_PASSWORD=123456
-    volumes:
-      - ${PROJECT_PATH}/postgresql:/var/lib/postgresql/data
+    metabase:
+        restart: "always"
+        image: metabase/metabase
+        environment:
 
-  odoo:
-    build: .
-    image: invap/odoo:16.0
-    container_name: odoo
-    restart: unless-stopped
-    volumes:
-      - ${PROJECT_PATH}/config:/etc/odoo
-      - ${PROJECT_PATH}/data_dir:/opt/odoo/data
-      - ${PROJECT_PATH}/backup_dir:/opt/odoo/backups
-      - ${PROJECT_PATH}/log:/var/log/odoo
-    links:
-      - postgres:db
-    ports:
-      - "8069:8069"
+            - MB_DB_TYPE=postgres
+            - MB_DB_DBNAME=metabase
+            - MB_DB_PORT=5432
+            - MB_DB_USER=odoo
+            - MB_DB_PASS=odoo
+            - MB_DB_HOST=db
+        ports:
+            - 3000:3000
+        networks:
+            goro:
+        labels:
+            - traefik.enable=true
+            - traefik.frontend.port=3000
+        depends_on:
+            - db
+            - dns
+    db:
+        image: postgres:14
+        environment:
+            - POSTGRES_USER=odoo
+            - POSTGRES_PASSWORD=odoo
+            - POSTGRES_DB=postgres
+            - PGDATA=/var/lib/postgresql/data/pgdata
+        volumes:
+            - pg_data:/var/lib/postgresql/data/pgdata
+        networks:
+            goro:
+        ports:
+           - 54320:5432
+    aeroo:
+        image: goro/aeroo-docs 
+        restart: unless-stopped
+        networks:
+            goro:
+    odoo:
+        # user: root
+        # build:
+        #     context: ./data
+        #     dockerfile: Dockerfile
+        image: filoquin/odoo:16.0
+        depends_on:
+            - db
+            - dns
+            - aeroo
+        volumes:
+            - ./data/custom_modules:/home/odoo/custom_modules
+            - default:/home/odoo/src
+            - odoo_data:/home/odoo/data
+        labels:
+            - traefik.enable=true
+            - traefik.frontend.port=8069
+            - traefik.frontend.rule=HostRegexp:$DOMAIN,{subdomain:[a-z0-9-_]+}.$DOMAIN
+            # - traefik.frontend.priority=10
+            # - traefik.longpolling.port=8072
+            # - traefik.longpolling.frontend.rule=HostRegexp:$DOMAIN,{subdomain:[a-z0-9-_]+}.$DOMAIN;PathPrefix:/longpolling/
+            - traefik.backend.loadbalancer.stickiness=true
+            - traefik.backend.loadbalancer.method=drr
+            # traefik.frontend.redirect.regex: $strTraefikRedirectRegex
+            # traefik.frontend.redirect.replacement: $strTraefikRedirectReplacement
+        environment:
+            CUSTOM_CONFIG: |-
+                [options]
+            CUSTOM_REQUIREMTNS: |-
+                # custom pip librearies
+            CUSTOM_ENTRYPOINT: |-
+                #!/bin/bash
+                # pip install --user --no-cache-dir -e /home/odoo/custom/odoo
+                # pip install --user --no-cache-dir pyopenssl
+            DBFILTER: wwww.casagoro.com.ar
+            MAX_CRON_THREADS: 2
+            WORKERS: 4
+            LIST_DB: False
+            WITHOUT_DEMO: True
+            PROXY_MODE: True
+            AEROO_DOCS_HOST: goro
+            LIMIT_TIME_REAL_CRON: 0
+            LIMIT_TIME_REAL: 9999
+            UNACCENT: False
+            #ODOO_UPGRADE_PATH: /home/odoo/custom/odoo-upgrade
+        dns:
+            - 172.30.16.10
+        networks:
+            goro:
+
+volumes:
+    pg_data:
+    odoo_data:
+    default:
+
+networks:
+    goro:
+        external: false
+        name: goro-16
+        ipam:
+            config:
+                - subnet: 172.30.16.0/24
+
