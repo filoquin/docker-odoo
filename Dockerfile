@@ -78,6 +78,7 @@ RUN apt-get update \
         libxml2-dev \
         libxslt1-dev \
         swig \
+        rsync \
         git \
     # upgrade pip
     && pip install --upgrade pip

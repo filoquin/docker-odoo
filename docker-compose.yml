@@ -42,8 +42,8 @@ services:
     dns:
         image: cytopia/bind:alpine-0.30
         environment:
-            DNS_A: '*=172.30.16.1'
-            DNS_FORWARDER: 127.0.0.11
+            DNS_A: '16.casagoro.com.ar=172.30.16.1'
+            DNS_FORWARDER: '8.8.8.8,8.8.4.4,127.0.0.11'
         networks:
             goro:
                 ipv4_address: 172.30.16.10
@@ -91,9 +91,14 @@ services:
             AEROO_DOCS_HOST: goro
             LIMIT_TIME_REAL_CRON: 0
             LIMIT_TIME_REAL: 9999
+            PGUSER: odoo
+            PGPASSWORD: odoo
+            PGHOST: db
             #UNACCENT: false
             #ODOO_UPGRADE_PATH: /home/odoo/custom/odoo-upgrade
         dns:
+            - 8.8.8.8
+            - 8.8.4.4
             - 172.30.16.10
         networks:
             goro:
