@@ -60,12 +60,16 @@ services:
         volumes:
             - ./custom_modules:/opt/odoo/src/custom-addons
             - default:/home/odoo/src
-            - odoo_data:/home/odoo/data
+            - ./odoo_data:/home/odoo/data
         labels:
             - traefik.enable=true
             - traefik.frontend.port=8069
             - traefik.frontend.rule=HostRegexp:{catchall:.*},{subdomain:[a-z0-9-_]+}.{catchall:.*}
             - traefik.frontend.priority=5
+            - traefik.http.routers.whoami.rule=Host(`http://odoo16.casagoro.com.ar`)
+            - traefik.http.routers.whoami.entrypoints=websecure
+            - traefik.http.routers.whoami.tls.certresolver=myresolver
+
             # - traefik.longpolling.port=8072
             # - traefik.longpolling.frontend.rule=HostRegexp:{catchall:.*},{subdomain:[a-z0-9-_]+}.{catchall:.*};PathPrefix:/longpolling/
             # - traefik.longpolling.priority=10

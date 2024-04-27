@@ -7,6 +7,13 @@ services:
             - --docker
             - --docker.domain=localhost
             - --docker.exposedbydefault=true
+            - --api.insecure=true
+            - --docker=true
+            - --entryPoints.websecure.address=:443
+            - --certificatesresolvers.certresolver.acme.caServer=https://acme-v02.api.letsencrypt.org/directory
+            - --certificatesresolvers.certresolver.acme.tlschallenge=true
+            - --certificatesresolvers.certresolver.acme.email=filoquin@gmail.com
+            - --certificatesresolvers.certresolver.acme.storage=/letsencrypt/acme.json
         # ports:
         #     - 80:80
         #     - 8080:8080
@@ -19,3 +26,5 @@ services:
         restart: unless-stopped
         # para que funcione la solución *.localhost
         network_mode: "host"
+
+
