@@ -42,7 +42,7 @@ services:
     dns:
         image: cytopia/bind:alpine-0.30
         environment:
-            DNS_A: '16.casagoro.com.ar=172.30.16.1'
+            DNS_A: 'odoo16.casagoro.com.ar=172.30.16.1'
             DNS_FORWARDER: '8.8.8.8,8.8.4.4,127.0.0.11'
         networks:
             goro:
@@ -65,20 +65,12 @@ services:
         labels:
             - traefik.enable=true
             - traefik.docker.network=goro
-            - traefik.frontend.port=8069
-            - traefik.frontend.rule=HostRegexp:{catchall:.*},{subdomain:[a-z0-9-_]+}.{catchall:.*}
-            - traefik.frontend.priority=5
-            - traefik.http.routers.whoami.rule=Host(`https://odoo16.casagoro.com.ar`)
-            - traefik.http.routers.whoami.entrypoints=websecure
-            - traefik.http.routers.whoami.tls.certresolver=myresolver
+            - traefik.http.routers.frontend.rule=Host(`odoo16.casagoro.com.ar`)
+            - traefik.http.routers.frontend.entrypoints=http,https
+            - traefik.http.routers.frontend.tls=true
+            - traefik.http.routers.frontend.tls.certresolver=le
+            - traefik.http.services.frontend-svc.loadbalancer.server.port=8069
 
-            # - traefik.longpolling.port=8072
-            # - traefik.longpolling.frontend.rule=HostRegexp:{catchall:.*},{subdomain:[a-z0-9-_]+}.{catchall:.*};PathPrefix:/longpolling/
-            # - traefik.longpolling.priority=10
-            - traefik.backend.loadbalancer.stickiness=true
-            - traefik.backend.loadbalancer.method=drr
-            # traefik.frontend.redirect.regex: $strTraefikRedirectRegex
-            # traefik.frontend.redirect.replacement: $strTraefikRedirectReplacement
         environment:
             CUSTOM_CONFIG: |-
                 [options]
@@ -118,7 +110,3 @@ networks:
     goro:
         external: true
         name: goro-16
-#         ipam:
-#             config:
-#                 - subnet: 172.30.16.0/24
-
