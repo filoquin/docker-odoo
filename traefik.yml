@@ -14,9 +14,10 @@ services:
             - --certificatesresolvers.certresolver.acme.tlschallenge=true
             - --certificatesresolvers.certresolver.acme.email=filoquin@gmail.com
             - --certificatesresolvers.certresolver.acme.storage=/letsencrypt/acme.json
-        # ports:
-        #     - 80:80
-        #     - 8080:8080
+        ports:
+            - 80:80
+            - 443:443
+            - 8080:8080
         labels:
             - traefik.enable=true
             - traefik.port=8080
@@ -26,5 +27,4 @@ services:
         restart: unless-stopped
         # para que funcione la solución *.localhost
         network_mode: "host"
-
 
