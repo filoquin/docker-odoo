@@ -64,6 +64,7 @@ services:
             - ./odoo.conf:/opt/odoo/odoo.conf
         labels:
             - traefik.enable=true
+            - traefik.docker.network=goro
             - traefik.frontend.port=8069
             - traefik.frontend.rule=HostRegexp:{catchall:.*},{subdomain:[a-z0-9-_]+}.{catchall:.*}
             - traefik.frontend.priority=5
@@ -115,9 +116,9 @@ volumes:
 
 networks:
     goro:
-        external: false
+        external: true
         name: goro-16
-        ipam:
-            config:
-                - subnet: 172.30.16.0/24
+#         ipam:
+#             config:
+#                 - subnet: 172.30.16.0/24
 

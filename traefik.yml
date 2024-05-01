@@ -1,7 +1,7 @@
 version: '2.1'
 services:
     traefik:
-        image: traefik:v1.7.33-alpine
+        image: traefik:v2.2
         command:
             - --api
             - --docker
@@ -14,6 +14,7 @@ services:
             - --certificatesresolvers.certresolver.acme.tlschallenge=true
             - --certificatesresolvers.certresolver.acme.email=filoquin@gmail.com
             - --certificatesresolvers.certresolver.acme.storage=/letsencrypt/acme.json
+
         ports:
             - 80:80
             - 443:443
@@ -21,10 +22,27 @@ services:
         labels:
             - traefik.enable=true
             - traefik.port=8080
-            - traefik.frontend.rule=Host:traefik.localhost
+            - traefik.http.routers.http-catchall.rule=hostregexp(`{host:[a-z-.]+}`)
+            - traefik.http.routers.http-catchall.entrypoints=http"
+            - traefik.http.routers.http-catchall.middlewares=redirect-to-https
+            - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
+            #- traefik.frontend.rule=Host:traefik.localhost
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock:ro
+            - data:/etc/traefik
         restart: unless-stopped
         # para que funcione la solución *.localhost
-        network_mode: "host"
+        # network_mode: "host"
+        networks:
+            goro:
+networks:
+    goro:
+        external: True
+        name: goro-16
+        # ipam:
+        #     config:
+        #         - subnet: 172.30.16.0/24
+
+volumes:
+  data:
 
