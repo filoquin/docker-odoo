@@ -24,6 +24,7 @@ services:
             - traefik.http.routers.http-catchall.entrypoints=http
             - traefik.http.routers.http-catchall.middlewares=redirect-to-https
             - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
+            - traefik.http.middlewares.gzip.compress=true
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock:ro
             - ./letsencrypt:/etc/traefik

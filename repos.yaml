@@ -336,6 +336,15 @@ oca-mis-builder:
         - origin 16.0
     target: origin 16.0
 
+oca-delivery-carrier:
+    defaults:
+        depth: 1
+    remotes:
+        origin: https://github.com/oca/delivery-carrier.git
+    merges:
+        - origin 16.0
+    target: origin 16.0
+
 oca-partner-contact:
     defaults:
         depth: 1
@@ -525,6 +534,15 @@ oca-website:
         - origin 16.0
     target: origin 16.0
 
+oca-pos:
+    defaults:
+        depth: 1
+    remotes:
+        origin: https://github.com/oca/pos.git
+    merges:
+        - origin 16.0
+    target: origin 16.0
+
 odoo-design-themes:
     defaults:
         depth: 1
@@ -534,11 +552,11 @@ odoo-design-themes:
         - origin 16.0
     target: origin 16.0
 
-/home/odoo/src/odoo-upgrade:
-    defaults:
-        depth: 1
-    remotes:
-        origin: https://$GITHUB_BOT_TOKEN@github.com/ingadhoc/odoo-upgrade.git
-    merges:
-        - origin 16.0
-    target: origin 16.0
+# /home/odoo/src/odoo-upgrade:
+#     defaults:
+#         depth: 1
+#     remotes:
+#         origin: https://$GITHUB_BOT_TOKEN@github.com/ingadhoc/odoo-upgrade.git
+#     merges:
+#         - origin 16.0
+#     target: origin 16.0

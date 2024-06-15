@@ -17,12 +17,24 @@ services:
             goro:
         labels:
             - traefik.enable=true
-            - traefik.frontend.port=3000
+            #- traefik.frontend.port=3000
+            - traefik.docker.network=goro
+
+            - traefik.http.routers.metabase.entrypoints=http,https
+            - traefik.http.routers.metabase.tls=true
+            - traefik.http.routers.metabase.tls.certresolver=le
+            - traefik.http.routers.metabase.rule=Host(`metabase.casagoro.com.ar`)
+            - traefik.http.routers.metabase.service=metabase@docker
+            - traefik.http.routers.metabase.middlewares=gzip
+            - traefik.http.services.metabase.loadbalancer.server.port=3000
         depends_on:
             - db
             - dns
+
     db:
         image: postgres:14
+        shm_size: 2gb
+        restart: "always"
         environment:
             - POSTGRES_USER=odoo
             - POSTGRES_PASSWORD=odoo
@@ -42,7 +54,7 @@ services:
     dns:
         image: cytopia/bind:alpine-0.30
         environment:
-            DNS_A: 'odoo16.casagoro.com.ar=172.30.16.1'
+            DNS_A: 'www.casagoro.com.ar=172.30.16.1'
             DNS_FORWARDER: '8.8.8.8,8.8.4.4,127.0.0.11'
         networks:
             goro:
@@ -52,6 +64,7 @@ services:
         # build:
         #     context: ./data
         #     dockerfile: Dockerfile
+        restart: "always"
         image: filoquin/odoo:16.0
         depends_on:
             - db
@@ -63,13 +76,34 @@ services:
             - ./odoo_data:/opt/odoo/data
             - ./odoo.conf:/opt/odoo/odoo.conf
         labels:
+            # global config
             - traefik.enable=true
             - traefik.docker.network=goro
-            - traefik.http.routers.frontend.rule=Host(`odoo16.casagoro.com.ar`)
+
+            # main routers 8069 web rule
             - traefik.http.routers.frontend.entrypoints=http,https
             - traefik.http.routers.frontend.tls=true
             - traefik.http.routers.frontend.tls.certresolver=le
-            - traefik.http.services.frontend-svc.loadbalancer.server.port=8069
+            - traefik.http.routers.frontend.rule=Host(`www.casagoro.com.ar`)
+            - traefik.http.routers.frontend.service=frontend@docker
+            - traefik.http.routers.frontend.middlewares=gzip
+            - traefik.http.services.frontend.loadbalancer.server.port=8069
+
+            # main routers 8072 websocket rule /websocket
+            - traefik.http.routers.socket.tls=true
+            - traefik.http.routers.socket.entrypoints=http,https
+            - traefik.http.routers.socket.rule= Host(`www.casagoro.com.ar`) && Path(`/websocket`)
+            - traefik.http.routers.socket.middlewares=upgradeheader,gzip
+            - traefik.http.routers.socket.service=socket@docker
+            - traefik.http.services.socket.loadbalancer.server.port=8072
+
+            # upgrade headers
+            - traefik.http.middlewares.upgradeheader.headers.customRequestHeaders.Upgrade=websocket
+            - traefik.http.middlewares.upgradeheader.headers.customRequestHeaders.Connection=Upgrade
+            - traefik.http.middlewares.upgradeheader.headers.hostsproxyheaders=websocket,Upgrade
+
+            # gzip compress
+            - traefik.http.middlewares.gzip.compress=true
 
         environment:
             CUSTOM_CONFIG: |-
