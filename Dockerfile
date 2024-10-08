@@ -116,6 +116,7 @@ RUN pip install --no-cache-dir \
         geoip2==4.6.0 \
         pdf417gen==0.7.1 \
         PyPDF2 \
+        ipdb \
     && apt-get purge -yqq build-essential '*-dev' make || true \
     && apt-get -yqq autoremove \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -134,7 +135,7 @@ USER root
 WORKDIR /opt/odoo/
 
 # Install Odoo
-ARG ODOO_VERSION=16.0
+ARG ODOO_VERSION=17.0
 ARG ODOO_SOURCE=odoo/odoo
 ENV ODOO_VERSION="$ODOO_VERSION"
 ENV ODOO_SOURCE="$ODOO_SOURCE"

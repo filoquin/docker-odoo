@@ -6,10 +6,10 @@
 #     remotes:
 #         origin: https://github.com/[organization]/[github-repo].git
 #     merges:
-#         - origin 16.0
+#         - origin 17.0
 #         - origin refs/pull/[pull_1_number]/head
 #         - origin refs/pull/[pull_2_number]/head
-#     target: origin 16.0
+#     target: origin 17.0
 
 # Mandatory repository for odoo
 /opt/odoo/odoo:
@@ -18,17 +18,17 @@
     remotes:
         origin: https://github.com/adhoc-cicd/odoo-odoo.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
-/opt/odoo/enterprise:
-    defaults:
-        depth: 1
-    remotes:
-        origin: https://$GITHUB_BOT_TOKEN@github.com/adhoc-cicd/odoo-enterprise.git
-    merges:
-        - origin 16.0
-    target: origin 16.0
+# /opt/odoo/enterprise:
+#     defaults:
+#         depth: 1
+#     remotes:
+#         origin: https://$GITHUB_BOT_TOKEN@github.com/adhoc-cicd/odoo-enterprise.git
+#     merges:
+#         - origin 17.0
+#     target: origin 17.0
 
 ingadhoc-account-financial-tools:
     defaults:
@@ -36,8 +36,8 @@ ingadhoc-account-financial-tools:
     remotes:
         origin: https://github.com/ingadhoc/account-financial-tools.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 ingadhoc-account-invoicing:
     defaults:
@@ -45,8 +45,8 @@ ingadhoc-account-invoicing:
     remotes:
         origin: https://github.com/ingadhoc/account-invoicing.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 ingadhoc-account-payment:
     defaults:
@@ -54,8 +54,8 @@ ingadhoc-account-payment:
     remotes:
         origin: https://github.com/ingadhoc/account-payment.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 ingadhoc-aeroo_reports:
     defaults:
@@ -63,8 +63,8 @@ ingadhoc-aeroo_reports:
     remotes:
         origin: https://github.com/ingadhoc/aeroo_reports.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 ingadhoc-argentina-sale:
     defaults:
@@ -72,8 +72,8 @@ ingadhoc-argentina-sale:
     remotes:
         origin: https://github.com/ingadhoc/argentina-sale.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 ingadhoc-hr:
     defaults:
@@ -81,8 +81,8 @@ ingadhoc-hr:
     remotes:
         origin: https://github.com/ingadhoc/hr.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 ingadhoc-miscellaneous:
     defaults:
@@ -90,8 +90,8 @@ ingadhoc-miscellaneous:
     remotes:
         origin: https://github.com/ingadhoc/miscellaneous.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 ingadhoc-multi-company:
     defaults:
@@ -99,8 +99,8 @@ ingadhoc-multi-company:
     remotes:
         origin: https://github.com/ingadhoc/multi-company.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 ingadhoc-multi-store:
     defaults:
@@ -108,8 +108,8 @@ ingadhoc-multi-store:
     remotes:
         origin: https://github.com/ingadhoc/multi-store.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 ingadhoc-odoo-argentina:
     defaults:
@@ -117,8 +117,8 @@ ingadhoc-odoo-argentina:
     remotes:
         origin: https://github.com/ingadhoc/odoo-argentina.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 ingadhoc-odoo-argentina-ee:
     defaults:
@@ -126,8 +126,8 @@ ingadhoc-odoo-argentina-ee:
     remotes:
         origin: https://github.com/ingadhoc/odoo-argentina-ee.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 ingadhoc-partner:
     defaults:
@@ -135,8 +135,8 @@ ingadhoc-partner:
     remotes:
         origin: https://github.com/ingadhoc/partner.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 ingadhoc-product:
     defaults:
@@ -144,8 +144,8 @@ ingadhoc-product:
     remotes:
         origin: https://github.com/ingadhoc/product.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 ingadhoc-project:
     defaults:
@@ -153,8 +153,8 @@ ingadhoc-project:
     remotes:
         origin: https://github.com/ingadhoc/project.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 ingadhoc-purchase:
     defaults:
@@ -162,8 +162,8 @@ ingadhoc-purchase:
     remotes:
         origin: https://github.com/ingadhoc/purchase.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 ingadhoc-sale:
     defaults:
@@ -171,8 +171,8 @@ ingadhoc-sale:
     remotes:
         origin: https://github.com/ingadhoc/sale.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 ingadhoc-stock:
     defaults:
@@ -180,8 +180,8 @@ ingadhoc-stock:
     remotes:
         origin: https://github.com/ingadhoc/stock.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 ingadhoc-website:
     defaults:
@@ -189,8 +189,8 @@ ingadhoc-website:
     remotes:
         origin: https://github.com/ingadhoc/website.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-account-analytic:
     defaults:
@@ -198,8 +198,8 @@ oca-account-analytic:
     remotes:
         origin: https://github.com/oca/account-analytic.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-account-financial-reporting:
     defaults:
@@ -207,8 +207,8 @@ oca-account-financial-reporting:
     remotes:
         origin: https://github.com/oca/account-financial-reporting.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-account-financial-tools:
     defaults:
@@ -216,8 +216,8 @@ oca-account-financial-tools:
     remotes:
         origin: https://github.com/oca/account-financial-tools.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-account-invoicing:
     defaults:
@@ -225,8 +225,8 @@ oca-account-invoicing:
     remotes:
         origin: https://github.com/oca/account-invoicing.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-account-reconcile:
     defaults:
@@ -234,8 +234,8 @@ oca-account-reconcile:
     remotes:
         origin: https://github.com/oca/account-reconcile.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-bank-statement-import:
     defaults:
@@ -243,8 +243,8 @@ oca-bank-statement-import:
     remotes:
         origin: https://github.com/oca/bank-statement-import.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-brand:
     defaults:
@@ -252,8 +252,8 @@ oca-brand:
     remotes:
         origin: https://github.com/oca/brand.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-crm:
     defaults:
@@ -261,8 +261,8 @@ oca-crm:
     remotes:
         origin: https://github.com/oca/crm.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-e-commerce:
     defaults:
@@ -270,8 +270,8 @@ oca-e-commerce:
     remotes:
         origin: https://github.com/oca/e-commerce.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-hr:
     defaults:
@@ -279,8 +279,8 @@ oca-hr:
     remotes:
         origin: https://github.com/oca/hr.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-hr-expense:
     defaults:
@@ -288,8 +288,8 @@ oca-hr-expense:
     remotes:
         origin: https://github.com/oca/hr-expense.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-hr-holidays:
     defaults:
@@ -297,8 +297,8 @@ oca-hr-holidays:
     remotes:
         origin: https://github.com/oca/hr-holidays.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-knowledge:
     defaults:
@@ -306,8 +306,8 @@ oca-knowledge:
     remotes:
         origin: https://github.com/oca/knowledge.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-management-system:
     defaults:
@@ -315,8 +315,8 @@ oca-management-system:
     remotes:
         origin: https://github.com/oca/management-system.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-manufacture:
     defaults:
@@ -324,8 +324,8 @@ oca-manufacture:
     remotes:
         origin: https://github.com/oca/manufacture.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-mis-builder:
     defaults:
@@ -333,8 +333,8 @@ oca-mis-builder:
     remotes:
         origin: https://github.com/oca/mis-builder.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-delivery-carrier:
     defaults:
@@ -342,8 +342,8 @@ oca-delivery-carrier:
     remotes:
         origin: https://github.com/oca/delivery-carrier.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-partner-contact:
     defaults:
@@ -351,8 +351,8 @@ oca-partner-contact:
     remotes:
         origin: https://github.com/oca/partner-contact.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-product-attribute:
     defaults:
@@ -360,8 +360,8 @@ oca-product-attribute:
     remotes:
         origin: https://github.com/oca/product-attribute.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-product-pack:
     defaults:
@@ -369,8 +369,8 @@ oca-product-pack:
     remotes:
         origin: https://github.com/oca/product-pack.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-project:
     defaults:
@@ -378,8 +378,8 @@ oca-project:
     remotes:
         origin: https://github.com/oca/project.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-purchase-workflow:
     defaults:
@@ -387,8 +387,8 @@ oca-purchase-workflow:
     remotes:
         origin: https://github.com/oca/purchase-workflow.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-report-print-send:
     defaults:
@@ -396,8 +396,8 @@ oca-report-print-send:
     remotes:
         origin: https://github.com/oca/report-print-send.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-reporting-engine:
     defaults:
@@ -405,8 +405,8 @@ oca-reporting-engine:
     remotes:
         origin: https://github.com/oca/reporting-engine.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-sale-workflow:
     defaults:
@@ -414,8 +414,8 @@ oca-sale-workflow:
     remotes:
         origin: https://github.com/oca/sale-workflow.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-server-auth:
     defaults:
@@ -423,8 +423,8 @@ oca-server-auth:
     remotes:
         origin: https://github.com/oca/server-auth.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-server-backend:
     defaults:
@@ -432,8 +432,8 @@ oca-server-backend:
     remotes:
         origin: https://github.com/oca/server-backend.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-server-tools:
     defaults:
@@ -441,8 +441,8 @@ oca-server-tools:
     remotes:
         origin: https://github.com/oca/server-tools.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-server-ux:
     defaults:
@@ -450,8 +450,8 @@ oca-server-ux:
     remotes:
         origin: https://github.com/oca/server-ux.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-social:
     defaults:
@@ -459,8 +459,8 @@ oca-social:
     remotes:
         origin: https://github.com/oca/social.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-stock-logistics-availability:
     defaults:
@@ -468,8 +468,8 @@ oca-stock-logistics-availability:
     remotes:
         origin: https://github.com/oca/stock-logistics-availability.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-stock-logistics-barcode:
     defaults:
@@ -477,8 +477,8 @@ oca-stock-logistics-barcode:
     remotes:
         origin: https://github.com/oca/stock-logistics-barcode.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-stock-logistics-request:
     defaults:
@@ -486,8 +486,8 @@ oca-stock-logistics-request:
     remotes:
         origin: https://github.com/oca/stock-logistics-request.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-stock-logistics-warehouse:
     defaults:
@@ -495,8 +495,8 @@ oca-stock-logistics-warehouse:
     remotes:
         origin: https://github.com/oca/stock-logistics-warehouse.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-stock-logistics-workflow:
     defaults:
@@ -504,8 +504,8 @@ oca-stock-logistics-workflow:
     remotes:
         origin: https://github.com/oca/stock-logistics-workflow.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-survey:
     defaults:
@@ -513,8 +513,8 @@ oca-survey:
     remotes:
         origin: https://github.com/oca/survey.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-web:
     defaults:
@@ -522,8 +522,8 @@ oca-web:
     remotes:
         origin: https://github.com/oca/web.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-website:
     defaults:
@@ -531,8 +531,8 @@ oca-website:
     remotes:
         origin: https://github.com/oca/website.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 oca-pos:
     defaults:
@@ -540,8 +540,8 @@ oca-pos:
     remotes:
         origin: https://github.com/oca/pos.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 odoo-design-themes:
     defaults:
@@ -549,8 +549,8 @@ odoo-design-themes:
     remotes:
         origin: https://github.com/odoo/design-themes.git
     merges:
-        - origin 16.0
-    target: origin 16.0
+        - origin 17.0
+    target: origin 17.0
 
 # /home/odoo/src/odoo-upgrade:
 #     defaults:
@@ -558,5 +558,5 @@ odoo-design-themes:
 #     remotes:
 #         origin: https://$GITHUB_BOT_TOKEN@github.com/ingadhoc/odoo-upgrade.git
 #     merges:
-#         - origin 16.0
-#     target: origin 16.0
+#         - origin 17.0
+#     target: origin 17.0

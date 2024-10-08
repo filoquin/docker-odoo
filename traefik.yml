@@ -30,9 +30,9 @@ services:
             - ./letsencrypt:/etc/traefik
         restart: unless-stopped
         networks:
-            goro:
+            ce:
 networks:
-    goro:
+    ce:
         external: True
-        name: goro-16
+        name: ce-17
 
