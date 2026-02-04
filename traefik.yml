@@ -1,38 +1,37 @@
-version: '2.1'
+version: "2.1"
 services:
-    traefik:
-        image: traefik:v2.2
-        command:
-            - --api
-            - --global.sendAnonymousUsage=false
-            - --entryPoints.http.address=:80
-            - --entryPoints.https.address=:443
-            - --certificatesresolvers.le.acme.email=filoquin@gmail.com
-            - --certificatesresolvers.le.acme.tlschallenge=true
-            - --certificatesResolvers.le.acme.storage=/etc/traefik/acme.json
-            - --certificatesresolvers.le.acme.httpchallenge=true
-            - --certificatesResolvers.le.acme.httpChallenge.entryPoint=http
-            - --providers.docker=true
-            - --providers.docker.exposedbydefault=false
-        ports:
-            - 80:80
-            - 443:443
-            #- 8080:8080
-        labels:
-            - traefik.enable=true
-            - traefik.http.routers.http-catchall.rule=hostregexp(`{host:[a-z-.]+}`)
-            - traefik.http.routers.http-catchall.entrypoints=http
-            - traefik.http.routers.http-catchall.middlewares=redirect-to-https
-            - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
-            - traefik.http.middlewares.gzip.compress=true
-        volumes:
-            - /var/run/docker.sock:/var/run/docker.sock:ro
-            - ./letsencrypt:/etc/traefik
-        restart: unless-stopped
-        networks:
-            goro:
+  traefik:
+    image: traefik:v2.2
+    command:
+      - --api
+      - --global.sendAnonymousUsage=false
+      - --entryPoints.http.address=:80
+      - --entryPoints.https.address=:443
+      - --certificatesresolvers.le.acme.email=filoquin@gmail.com
+      - --certificatesresolvers.le.acme.tlschallenge=true
+      - --certificatesResolvers.le.acme.storage=/etc/traefik/acme.json
+      - --certificatesresolvers.le.acme.httpchallenge=true
+      - --certificatesResolvers.le.acme.httpChallenge.entryPoint=http
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+    ports:
+      - 80:80
+      - 443:443
+      #- 8080:8080
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.http-catchall.rule=hostregexp(`{host:[a-z-.]+}`)
+      - traefik.http.routers.http-catchall.entrypoints=http
+      - traefik.http.routers.http-catchall.middlewares=redirect-to-https
+      - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
+      - traefik.http.middlewares.gzip.compress=true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./letsencrypt:/etc/traefik
+    restart: unless-stopped
+    networks:
+      goro:
 networks:
-    goro:
-        external: True
-        name: goro-16
-
+  goro:
+    external: True
+    name: goro-16
